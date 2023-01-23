@@ -16,8 +16,10 @@ def interface():
             keep_running= False
         elif choice =="1":
             HDLLDL_driver()
+        elif choice =="2":
+            chol_driver()
     print("Program ending")
-    
+#%%    
 def HDLLDL_driver(): #calling all the functions together so that together they can do their job in the code
     HDL_in,LDL_in=HDLLDL_input()
     HDL_analy,LDL_analy=HDLLDL_analysis(HDL_in,LDL_in)
@@ -51,5 +53,19 @@ def HDL_output(HDL_value,HDL_analy,LDL_value,LDL_analy):
     print("The HDL result of {} is considered {}".format(HDL_value,HDL_analy))
     print("The LDL result of {} is considered {}".format(LDL_value,LDL_analy))
     return
+#%%
+def chol_input():
+    chol_in=input("Enter the total cholesterol result:")
+    return chol_in
+def chol_analysis(chol_in):
+    if chol_in<200:
+        answer3="Normal"
+    elif 200<=chol_in<=239:
+        answer3="Borderline High"
+    elif chol_in>=240:
+        answer3="High"
+    return answer3
+def chol_output(chol_in,chol_result):
+    print ("The total cholesterol result of {} is consdered {}".format(chol_in,chol_result))
 
 interface()
