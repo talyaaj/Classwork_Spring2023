@@ -10,6 +10,7 @@ def interface():
     while keep_running:
         print("Options:")
         print("1- HDL/LDL")
+        print("2- Total Cholsterol")
         print("9-Quit:")
         choice= input("Select an option:")
         if choice =="9":
@@ -54,6 +55,10 @@ def HDL_output(HDL_value,HDL_analy,LDL_value,LDL_analy):
     print("The LDL result of {} is considered {}".format(LDL_value,LDL_analy))
     return
 #%%
+def chol_driver(): 
+    chol_in=int(chol_input())
+    chol_result=chol_analysis(chol_in)
+    chol_output(chol_in,chol_result)
 def chol_input():
     chol_in=input("Enter the total cholesterol result:")
     return chol_in
