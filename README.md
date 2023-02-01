@@ -1,6 +1,14 @@
-# Patient Information
-*confusing information
-*more patient info
-*bio for the paitent
-*patient stuff
-*edits that I'mmaking in the new branch
+# Patient Health Database
+Author: Talya Jeter
+
+##Introduction 
+
+## Specification s
+The database will contain: 
+*Patient Name
+*Patient MEdical Record Number
+*Patient Age
+*Patient Test Results
+
+*Patient Bloodtype
+
