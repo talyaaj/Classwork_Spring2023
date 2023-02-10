@@ -60,7 +60,7 @@ def get_full_name(patient):
     return fullname
 #%%
 def print_database(db):
-    for patient in db: 
+    for patient in db.values(): 
         fullname=get_full_name(patient)
         print("MRN: {}, Full Name: {}, Age: {}".format(patient["MRN"],fullname,patient["Age"]))  
 #%%    

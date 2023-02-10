@@ -73,4 +73,5 @@ def chol_analysis(chol_in):
 def chol_output(chol_in,chol_result):
     print ("The total cholesterol result of {} is consdered {}".format(chol_in,chol_result))
 
-interface()
+if __name__=="__main__":
+    interface()
