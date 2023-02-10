@@ -5,14 +5,15 @@ Created on Wed Feb  1 12:18:19 2023
 @author: lilbl
 """
 #%%
-def create_patient_entry(patient_name, patient_mrn,patient_age):
-    new_patient=[patient_name,patient_mrn,patient_age,[]] #empty list serves as a place to store tests 
+def create_patient_entry(patient_fname,patient_lname,patient_mrn,patient_age):
+    #new_patient=[patient_name,patient_mrn,patient_age,[]] #empty list serves as a place to store tests 
+    new_patient={"First Name":patient_fname, "Last Name":patient_lname,"MRN":patient_mrn, "Age":patient_age, "Tests":[]} 
     return new_patient
 def main_driver():
     db=[]
-    db.append(create_patient_entry("Ann Ables",1,34))
-    db.append(create_patient_entry("Bob Boyles",2,45))
-    db.append(create_patient_entry("Chris Chou",3,52))
+    db.append(create_patient_entry("Ann","Ables",1,34))
+    db.append(create_patient_entry("Bob","Boyles",2,45))
+    db.append(create_patient_entry("Chris","Chou",3,52))
     print(db)
     add_test_to_patient(db,1,"HDL",120)
     add_test_to_patient(db,2,"LDL",100)
