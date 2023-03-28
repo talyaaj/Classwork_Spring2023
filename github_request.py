@@ -15,6 +15,8 @@ print(r.status_code) #status code tells you whether or not the request was good 
 #200 is the status code for good request. All other code types are on github,schedule, apis/requests/servers
 
 print(r.text)
+cheese = r.text
+print(cheese)
 # if we want to see the requested information, it'll be in a text format
 
 branches = r.json()
@@ -26,9 +28,9 @@ for x in branches: #each index in the list is a dictionary
 #browsers make GET requests so you visualize yourgithub request by copy/pasting it, but NOT a post request
 # %%
 # out_data = {"name": "Talya Jeter", "net_id": "tj95",
-            "e-mail": "talya.jeter@duke.edu"}
+#            "e-mail": "talya.jeter@duke.edu"}
 # post_r = requests.post("http://vcm-21170.vm.duke.edu:5000/student",
-                       json=out_data)
+#                       json=out_data)
 print(r.status_code)
 print(r.text)
 
