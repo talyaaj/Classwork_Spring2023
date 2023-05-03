@@ -23,7 +23,7 @@ print(r.status_code)
 print(r.text)
 print(r.json())
 
-out_data= {"a": 2, "b": -3}
+
 r = requests.post(server + "/add", json = out_data)
 print(r.status_code)
 print(r.text)
