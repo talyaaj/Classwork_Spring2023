@@ -17,18 +17,21 @@ and create a dictionary of dictionaries
  "tests": {}}
 """
 from flask import Flask, request, jsonify
+from pymodm import connect, MongoModel, fields
+from PatientModel import Patient
+from pymodm import errors as pymodm_errors
+from secrets import mongodb_acct, mongodb_pwd
 
 #assigning global variable names
 app = Flask(__name__)
-db = {}
 testdb = {}
 
 def add_patient_to_db(pid, name, blood_type):
-    new_patient = {"id": pid,
-                   "name": name,
-                   "blood_type": blood_type}
-    db[pid] = new_patient
-    print(db)
+    new_patient = Patient(patient_id=pid,
+                          patient_name= name,
+                          blood_type= blood_type)
+    saved_patient = new_patient.save()
+    return saved_patient
 
 
 @app.route("/new_patient", methods=["POST"])
@@ -88,18 +91,17 @@ def validate_patient_id_from_get(patient_id):
 
 
 def add_new_test(pid, test_name, test_result):
-    new_test_entry = {"id": pid,
-                   "test_name": test_name,
-                   "test_result": test_result}
-    testdb[pid] = new_test_entry
-    print(testdb)
+    x = Patient.objects.raw({"_id": pid}).first()
+    x.tests.append((test_name, test_result))
+    x.save()
 
 
 def does_patient_exist_in_db(pid):
-    if pid in db:
-        return True
-    else:
+    try:
+        x = Patient.objects.raw({"_id": pid}).first()
+    except pymodm_errors.DoesNotExist:
         return False
+    return True
 
 
 def new_test_driver(new_test):
@@ -138,6 +140,10 @@ def validate_generic(data, expected_keys, expected_types):
             return "Key {} has the incorrect value type".format(key)
     return True
 
+def init_server():
+   connect("mongodb+srv://{}:{}"
+            "@bme547.89uqvz1.mongodb.net/classhealthdb?retryWrites=true&w=majority".format(mongodb_acct, mongodb_pwd))
 
 if __name__ =='__main__':
+    init_server()
     app.run()
